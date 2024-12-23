@@ -7,7 +7,7 @@ const { createAdapter } = require("@socket.io/redis-adapter");
 const app = express();
 const server = http.createServer(app);
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 const io = new Server(server, {
   cors: {
@@ -15,7 +15,6 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
-
 
 const pubClient = createClient({
   url: "redis://default:6Xi8qA5SJ39rLRDL8X82v2RxbpVFFkTq@redis-19451.c264.ap-south-1-1.ec2.redns.redis-cloud.com:19451",
@@ -38,7 +37,7 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(`Player connected to ${PORT}: ${socket.id}`);
-
+  console.log(`Total connected users: ${io.sockets.sockets.size}`);
   players[socket.id] = {
     x: Math.random() * 800 + 100,
     y: Math.random() * 600 + 100,
