@@ -34,6 +34,10 @@ const subClient = pubClient.duplicate();
 
 const players = {};
 
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
 // Handle Socket.IO connections
 io.on("connection", (socket) => {
   console.log(`Player connected to ${PORT}: ${socket.id}`);
